@@ -114,6 +114,22 @@ services:
       - n_bridge
     <<: *logging
 
+  nimbus_beacon:
+    container_name: nimbus_beacon
+    image: stereum/nimbus-beacon-chain:${NIMBUS_DOCKER_TAG}
+    restart: unless-stopped
+    command: ["nimbus_beacon_node", "pyrmont"]
+    volumes:
+      - ./data/status/beacon:/data
+    ports:
+      - 9100:9100/tcp
+      - 9100:9100/udp
+      - ${BEACON_API_IP}:5053:5053/tcp
+    networks:
+      - n_vouch_beacons
+      - n_bridge
+    <<: *logging
+
   vouch:
     container_name: vouch
     image: attestant/vouch:${VOUCH_DOCKER_TAG}
