@@ -32,10 +32,14 @@ p2p-max-peers: 100
 # Connection to geth container
 http-web3provider: http://geth:8545
 
+fallback-web3provider: []
+
 block-batch-limit: 512
 
 prater: yes
 
 genesis-state: /genesis/genesis.ssz
+
+# EOF
 
 # EOF
